@@ -4,49 +4,44 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
     <title>1142_math_project_B-Spline Surface</title>
   </head>
   <body>
     <canvas id="glCanva" width="800" height="600"></canvas>
-    <script src="bspline.js"></script>
+    
+    <div id="controls" style="margin-top: 10px;">
+      <label>ctrl[0][1].z: <input type="range" id="s01" min="-3" max="3" step="0.1" value="1"></label>
+      <span id="v01">1</span><br>
+      
+      <label>ctrl[1][0].z: <input type="range" id="s10" min="-3" max="3" step="0.1" value="1"></label>
+      <span id="v10">1</span><br>
+      
+      <label>ctrl[1][1].z: <input type="range" id="s11" min="-3" max="3" step="0.1" value="2"></label>
+      <span id="v11">2</span><br>
+      
+      <label>ctrl[1][2].z: <input type="range" id="s12" min="-3" max="3" step="0.1" value="1"></label>
+      <span id="v12">1</span><br>
+      
+      <label>ctrl[2][1].z: <input type="range" id="s21" min="-3" max="3" step="0.1" value="1"></label>
+      <span id="v21">1</span><br>
+    </div>
 
     <script>
-
       const canvas = document.getElementById('glCanva');
 
       const gl = canvas.getContext('webgl2');
 
       if (!gl) {
-            alert('WebGL2 不支援！');
-        } else {
-            console.log('WebGL2 初始化成功！');
-            gl.clearColor(0.2, 0.2, 0.2, 1.0); 
-            gl.clear(gl.COLOR_BUFFER_BIT);
+      alert('WebGL2 不支援！');
+      } else {
+      console.log('WebGL2 初始化成功！');
+      gl.clearColor(0.2, 0.2, 0.2, 1.0); 
+      gl.clear(gl.COLOR_BUFFER_BIT);
       }
-      console.log(N(2, 1, 0.5, [0,0,0,1,1,1]));
-      
-      let knot = [0,0,0,1,1,1];
-      let ctrl = [
-          [[-1,-1,0], [0,-1,1], [1,-1,0]],
-          [[-1, 0,1], [0, 0,2], [1, 0,1]],
-          [[-1, 1,0], [0, 1,1], [1, 1,0]]
-      ];
-
-      // 算出所有點，存成一個大陣列
-      let vertices = [];
-      const steps = 30;
-
-      for (let ui = 0; ui <= steps; ui++) {
-          for (let vi = 0; vi <= steps; vi++) {
-              let u = ui / steps;
-              let v = vi / steps;
-              let p = surface_point(ctrl, knot, knot, 2, 2, u, v);
-              vertices.push(p[0], p[1], p[2]);
-          }
-      }
-
-      console.log("點的數量:", vertices.length / 3);
-
     </script>
+    <script src="bspline.js"></script>
+    <script src="webgl.js"></script>
+    <script src="interaction.js"></script>
   </body>
 </html>

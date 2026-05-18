@@ -49,3 +49,33 @@ function surface_point(ctrl, knot_u, knot_v, m, n, u, v){
     }
     return point;
 }
+
+// normal 
+function computeNormal(ctrl, knot, m, n, u, v){
+    let eps = 0.001;
+
+    let pu = surface_point(ctrl, knot, knot, m, n, u + eps, v);
+    let pm = surface_point(ctrl, knot, knot, m, n, u - eps, v);
+    let du = [
+        (pu[0] - pm[0]) / (2 * eps),
+        (pu[1] - pm[1]) / (2 * eps),
+        (pu[2] - pm[2]) / (2 * eps)
+    ];
+
+    let pv1 = surface_point(ctrl, knot, knot, m, n, u, v + eps);
+    let pv2 = surface_point(ctrl, knot, knot, m, n, u, v - eps);
+    let dv = [
+        (pv1[0] - pv2[0]) / (2 * eps),
+        (pv1[1] - pv2[1]) / (2 * eps),
+        (pv1[2] - pv2[2]) / (2 * eps)
+    ];
+
+    let n_vec = [
+        du[1]*dv[2] - du[2]*dv[1],
+        du[2]*dv[0] - du[0]*dv[2],
+        du[0]*dv[1] - du[1]*dv[0]
+    ];
+
+    let len = Math.sqrt(n_vec[0]**2 + n_vec[1]**2 + n_vec[2]**2);
+    return [n_vec[0]/len, n_vec[1]/len, n_vec[2]/len];
+}
