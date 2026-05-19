@@ -71,9 +71,9 @@ function computeNormal(ctrl, knot, m, n, u, v){
     ];
 
     let n_vec = [
-        du[1]*dv[2] - du[2]*dv[1],
-        du[2]*dv[0] - du[0]*dv[2],
-        du[0]*dv[1] - du[1]*dv[0]
+        dv[1]*du[2] - dv[2]*du[1],
+        dv[2]*du[0] - dv[0]*du[2],
+        dv[0]*du[1] - dv[1]*du[0]
     ];
 
     let len = Math.sqrt(n_vec[0]**2 + n_vec[1]**2 + n_vec[2]**2);
