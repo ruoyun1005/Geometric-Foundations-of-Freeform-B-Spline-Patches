@@ -110,13 +110,15 @@
             if (gl) gl.viewport(0, 0, canvas.width, canvas.height);
         }
         resizeCanvas();
-        window.addEventListener('resize', () => { resizeCanvas(); render(); });
-
+        
         if (!gl) alert('WebGL2 不支援！');
         else gl.clearColor(0.1, 0.1, 0.18, 1.0);
-    </script>
+        </script>
     <script src="bspline.js"></script>
     <script src="webgl.js"></script>
     <script src="interaction.js"></script>
+    <script>
+      window.addEventListener('resize', () => { resizeCanvas(); render(); });
+    </script>
 </body>
 </html>
