@@ -1,0 +1,158 @@
+html,
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    padding: 12px 24px;
+    background: #16213e;
+    border-bottom: 1px solid #0f3460;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+header h1 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #25afcb;
+}
+
+header p {
+    font-size: 13px;
+    color: #888;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Canvas 區域 */
+.canvas-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+#glCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.axis-label {
+    position: absolute;
+    font-weight: bold;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* 控制面板 */
+.panel {
+    width: 260px;
+    background: #16213e;
+    border-left: 1px solid #0f3460;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.panel-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #25afcb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #0f3460;
+}
+
+/* 控制點示意圖 */
+.ctrl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.ctrl-cell {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #888;
+    background: #0f3460;
+}
+
+.ctrl-cell.fixed {
+    background: #1a3a5c;
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.ctrl-cell.active {
+    background: #0f3460;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+}
+
+/* 滑桿 */
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.slider-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-label {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.slider-value {
+    font-size: 12px;
+    color: #00d4ff;
+    font-weight: bold;
+    min-width: 32px;
+    text-align: right;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #25afcb;
+    cursor: pointer;
+}
+
+/* 操作說明 */
+.hint {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.hint span {
+    color: #aaa;
+}
