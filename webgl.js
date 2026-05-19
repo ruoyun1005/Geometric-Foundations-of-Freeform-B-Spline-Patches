@@ -437,5 +437,5 @@ function render(){
         gl.drawArrays(gl.LINE_STRIP, i * (steps + 1), steps + 1);
     }
 }
-
+resizeCanvas();
 render();  // 第一次畫
